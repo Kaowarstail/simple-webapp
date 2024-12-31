@@ -1,0 +1,11 @@
+- hosts: webserver
+  roles:
+    - webserver
+
+- hosts: dbserver
+  roles:
+    - dbserver
+
+- hosts: appserver
+  roles:
+    - appserver
