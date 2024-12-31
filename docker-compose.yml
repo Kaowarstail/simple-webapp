@@ -1,0 +1,31 @@
+services:
+  webserver:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./roles/webserver/template/nginx.conf.j2:/etc/nginx/nginx.conf
+    depends_on:
+      - appserver
+
+  dbserver:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: employee_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+  appserver:
+    build: ./roles/appserver
+    ports:
+      - "5000:5000"
+    depends_on:
+      - dbserver
+    volumes:
+      - ./roles/appserver/files/app.py:/home/ubuntu/app.py
+
+volumes:
+  db_data:
