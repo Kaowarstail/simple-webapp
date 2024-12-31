@@ -1,0 +1,8 @@
+[webserver]
+server1 ansible_host=<IP_WEB_SERVER> ansible_user=ubuntu
+
+[dbserver]
+server2 ansible_host=<IP_DB_SERVER> ansible_user=ubuntu
+
+[appserver]
+server3 ansible_host=<IP_APP_SERVER> ansible_user=ubuntu

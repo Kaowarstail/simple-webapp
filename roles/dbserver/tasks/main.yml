@@ -1,0 +1,14 @@
+- name: Installer MySQL
+  ansible.builtin.apt:
+    name: mysql-server
+    state: present
+    update_cache: yes
+
+- name: Configurer la base de données
+  template:
+    src: templates/init.sql.j2
+    dest: /tmp/init.sql
+
+- name: Exécuter le script SQL
+  ansible.builtin.command:
+    cmd: mysql < /tmp/init.sql

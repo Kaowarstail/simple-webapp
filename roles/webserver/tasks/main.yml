@@ -1,0 +1,21 @@
+- name: Installer Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Configurer Nginx pour Flask
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/sites-available/flask_app
+
+- name: Activer le site
+  file:
+    src: /etc/nginx/sites-available/flask_app
+    dest: /etc/nginx/sites-enabled/flask_app
+    state: link
+
+- name: Redémarrer Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted

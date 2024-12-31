@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS employee_db;
+CREATE USER IF NOT EXISTS 'db_user'@'%' IDENTIFIED BY 'Passw0rd';
+GRANT ALL PRIVILEGES ON employee_db.* TO 'db_user'@'%';
+FLUSH PRIVILEGES;
